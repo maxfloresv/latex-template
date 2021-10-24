@@ -1,0 +1,198 @@
+\documentclass[12pt,letterpaper,oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[none]{hyphenat}
+\usepackage[center]{caption}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{calc}
+\usepackage[OT1]{fontenc}
+\usepackage[includeheadfoot,
+            left=1cm,
+            right=1cm,
+            top=0.5cm,
+            bottom=0.5cm,
+            headheight=14pt,
+            headsep=20pt,
+            footskip=35pt,
+            letterpaper]{geometry}
+\usepackage[makeroom]{cancel}
+% Permite alinear imágenes:
+% https://tex.stackexchange.com/a/91580
+\usepackage[export]{adjustbox}
+
+% !---- Configuración del documento ---
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3mm}
+\setlength{\itemsep}{3mm}
+
+% --- ... ---
+% Comandos definidos:
+\newcommand*\ALLR{\Longleftrightarrow\quad}
+\newcommand*\ALR{\Longrightarrow\quad}
+
+\newcommand{\titulo}[1]{\begin{center}
+    {\large \textbf{\textrm{#1}}} 
+\end{center}}
+
+\newcommand{\subtitulo}[2]{\par
+    {\large \textbf{\textrm{{#2}. #1}}}
+\par}
+
+\newcommand{\subsubtitulo}[2]{\par
+    {\textbf{\textrm{{#2}. #1}}}
+\par}
+
+\newcommand{\setup}[5]{%
+    \begin{minipage}[t]{0.495\linewidth}
+        \textrm{\small \textbf{Prof.:} #1 / \textbf{Aux.:} #2\\
+        \textbf{Ayudantes:} #3\\ #4}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.495\linewidth}
+    \vspace{-5mm}
+        \raggedright
+        \includegraphics[width=0.4\linewidth,right]{logo_dfi.pdf}
+    \end{minipage} 
+    \rule{\linewidth}{\headrulewidth}
+    \titulo{#5} 
+}
+
+% --- ... ---
+% Se puede usar everymath en un comando
+\newcommand{\ind}[1]{\par%
+    \everymath{\displaystyle\color{mathind}}
+    {\color{textind} \emph{Indicación: #1}}
+\par} 
+
+% --- ... ---
+% Cambio de fuente
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- ... ---
+% Colores
+\definecolor{mygray}{RGB}{41, 48, 52}
+\definecolor{textind}{RGB}{107, 33, 41}
+\definecolor{mathind}{RGB}{61, 31, 34}
+
+% !---- tcolorbox ---
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+
+% --- ... ---
+% La opción parbox en false permite que parskip efectúe cambios 
+% en el espaciado: https://tex.stackexchange.com/a/154994/248558
+\tcbset{parbox=false}
+
+% --- ... ---
+% Cajas tcolorbox:
+\newtcolorbox{solucion}[1][Solución]{
+    enhanced, breakable,
+    width=\linewidth,
+    left=.5mm, right=.5mm,
+    height fixed for=first and middle,
+    before skip=5mm, after skip=8mm,
+    grow to left by=1cm,
+    boxrule=1.5pt,
+    sharp corners=all,
+    colback=white, colbacktitle=mygray,
+    title={\textbf{#1}}, coltitle=white,
+    titlerule=0pt, toptitle=1mm, bottomtitle=1mm,
+    % Más información: https://tex.stackexchange.com/a/454954
+    overlay first={\draw[line width=.5pt] (frame.south west) to (frame.south east);},
+    overlay middle={
+        \draw[line width=1.5pt] (frame.south west) to (frame.south east);
+        \draw[line width=1.5pt] (frame.north west) to (frame.north east);
+    },
+    overlay last={\draw[line width=1.5pt] (frame.north west) to (frame.north east);}
+}
+
+% --- ... ---
+% Highlight de expresiones matemáticas:
+\newcommand{\hmath}[1]{\tcbhighmath[
+    left=.3pt, right=.3pt, top=.3pt, bottom=.3pt,
+    colframe=white, colback=blue!10!white
+]{#1}}
+\newcommand{\emath}[1]{\tcbhighmath[
+    left=.3pt, right=.3pt, top=.3pt, bottom=.3pt,
+    colframe=white, colback=red!20!white
+]{#1}}
+
+% !---- TikZ ----
+\usepackage{tikz}
+\usetikzlibrary{babel,
+                positioning,
+                angles,
+                quotes,
+                decorations.pathmorphing,
+                decorations.pathreplacing,
+                patterns,
+                calc}
+
+% !---- Hyperref ----
+\usepackage[pdftex]{hyperref}
+% --- ... ---
+% Mejor usar hypersetup para poder poner tildes: 
+% https://tex.stackexchange.com/a/12988.
+\hypersetup{pdfinfo={
+                Title={Plantilla},
+                Author={Máximo Flores Valenzuela}
+            }}
+            
+% !---- AMS Math ----
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+% --- ... ---
+% Importante para que las ecuaciones alineadas con el 
+% entorno alignat* SÍ se corten en cambios de página.
+\allowdisplaybreaks
+
+% --- ... ---
+% Establece todas las ecuaciones al formato "displaystyle"
+\everymath{\displaystyle}
+
+% !---- MathTools ----
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+% !---- Enumitem ----
+\usepackage{enumitem}
+
+% --- ... ---
+% Lista 1: Para listar los ejercicios
+% Profundidad 1: P1., P2., P3. ...
+% Profundidad 2: (a), (b), (c) ...
+% Profundidad 3: (i), (ii), (iii) ...
+\newlist{lista}{enumerate}{3}
+\setlist[lista,1]{label={\textrm{\textbf{P\arabic*.}}}}
+\setlist[lista,2]{label={\textrm{(\alph*)}}, leftmargin=*}
+\setlist[lista,3]{label={\textrm{(\roman*)}}, leftmargin=*}
+
+% --- ... ---
+% Lista 2: Para listar elementos con un cuadrado
+\newlist{puntos}{enumerate}{1}
+\setlist[puntos,1]{
+    label={\textrm{\tiny$\blacksquare$}}, 
+    itemsep=1mm, 
+    topsep=1mm}
+
+% !---- Fancyhdr ----
+\usepackage{fancyhdr}
+
+% --- ... ---
+% Estilo de las páginas comunes y corrientes
+\fancypagestyle{normal}{%
+    \fancyhf{}%
+    \fancyhead[LO]{\small \textrm{Facultad de Ciencias Físicas y Matemáticas}}%
+    \fancyhead[RO]{\small \textrm{Universidad de Chile}}%
+    \fancyfoot[CO]{\textrm{|\ \thepage\ |}}
+}
+\pagestyle{normal}
+
+% !---- Inicio del documento ----
+\begin{document}
+lorem ipsum
+\end{document}
