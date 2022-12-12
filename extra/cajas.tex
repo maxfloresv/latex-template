@@ -1,0 +1,67 @@
+% La documentación de cómo crear estas cajas de texto está en https://ctan.dcc.uchile.cl/macros/latex/contrib/tcolorbox/tcolorbox.pdf
+
+% Caja de solución
+% Modificar solwidth si se quiere cambiar el grosor del borde -> mayor=más grosor.
+\def\solwidth{0.75}
+\newtcolorbox{solucion}[1][Solución:]{
+    enhanced jigsaw, 
+    breakable,
+    width=\linewidth,
+    left=.5mm, 
+    right=.5mm,
+    height fixed for=first and middle,
+    before skip=5mm, 
+    after skip=5mm,
+    boxrule=\solwidth pt,
+    boxsep=2mm,
+    colback=golden!10!white,
+    coltitle=darkgold,
+    colframe=darkgold,
+    title={\textbf{#1}},
+    attach title to upper={\ },
+    % Más información: https://tex.stackexchange.com/a/454954
+    overlay first={\draw[line width=\solwidth pt, darkgold] (frame.south west) to (frame.south east);},
+    overlay middle={
+        \draw[line width=\solwidth pt, darkgold] (frame.south west) to (frame.south east);
+        \draw[line width=\solwidth pt, darkgold] (frame.north west) to (frame.north east);
+    },
+    overlay last={\draw[line width=\solwidth pt, darkgold] (frame.north west) to (frame.north east);}
+}
+
+% Caja de distribución de ptjes
+\newtcolorbox{ptje}[1][Distribución de puntajes:]{
+    enhanced jigsaw, 
+    breakable,
+    width=\linewidth,
+    left=.5mm, 
+    right=.5mm,
+    height fixed for=first and middle,
+    before skip=5mm, 
+    after skip=5mm,
+    boxrule=\solwidth pt,
+    boxsep=2mm,
+    colback=green!10!white,
+    coltitle=green!10!black,
+    colframe=green!10!black,
+    title={\textbf{#1}},
+    attach title to upper={\vspace{-6.5mm}\\},
+    overlay first={\draw[line width=\solwidth pt, darkgold] (frame.south west) to (frame.south east);},
+    overlay middle={
+        \draw[line width=\solwidth pt, darkgold] (frame.south west) to (frame.south east);
+        \draw[line width=\solwidth pt, darkgold] (frame.north west) to (frame.north east);
+    },
+    overlay last={\draw[line width=\solwidth pt, darkgold] (frame.north west) to (frame.north east);}
+}
+
+% Caja de texto sin fondo
+\newtcolorbox{caja}[1][]{%
+    colback=white,
+    coltitle=black,
+    boxrule=0.5pt,
+    before skip=5mm, 
+    after skip=5mm,
+    boxsep=0pt,
+    breakable,
+    title={},
+    attach title to upper={\ }
+}
