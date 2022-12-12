@@ -1,0 +1,37 @@
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3mm}
+\setlength{\itemsep}{3mm}
+
+% Colores: Se pueden sacar de esta página los códigos https://www.rapidtables.com/web/color/RGB_Color.html
+\definecolor{mygray}{RGB}{41, 48, 52}
+\definecolor{textind}{RGB}{107, 33, 41}
+\definecolor{mathind}{RGB}{61, 31, 34}
+\definecolor{golden}{RGB}{255, 215, 0}
+\definecolor{darkgold}{RGB}{170, 108, 57}
+
+% Cambiar los valores dentro de las llaves para editar la metadata del PDF
+\hypersetup{pdfinfo={
+                Title={Titulo del PDF},
+                Author={Autor del PDF}
+            }}
+
+% Tipo de letra (acá se pueden buscar más: https://tug.org/FontCatalogue/mathfonts.html)
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}     
+
+% La opción parbox en false permite que parskip efectúe cambios en el espaciado: https://tex.stackexchange.com/a/154994/248558
+\tcbset{parbox=false}
+
+% Importante para que las ecuaciones alineadas con el entorno alignat* SÍ se corten en cambios de página.
+\allowdisplaybreaks
+
+% Lo que aparece en el header y footer:
+\fancypagestyle{normal}{
+    \fancyhf{}
+    \fancyhead[LO]{\small \textrm{Facultad de Ciencias Físicas y Matemáticas}}
+    \fancyhead[RO]{\small \textrm{Universidad de Chile}}
+    \fancyfoot[CO]{\textrm{---\ \thepage\ ---}}
+}
+
+% Establece todas las ecuaciones al formato "displaystyle" (quitar % para ver cambios)
+% \everymath{\displaystyle}
