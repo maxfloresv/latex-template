@@ -1,0 +1,18 @@
+% Aquí se pueden editar las listas del documento
+
+% Lista de las preguntas
+\newlist{pregunta}{enumerate}{3}
+\setlist[pregunta,1]{
+    label={\textrm{\textbf{P\arabic*.}}},
+    labelsep=3mm
+}
+\setlist[pregunta,2]{
+    label={\textrm{(\alph*)}}, 
+    leftmargin=*,
+    labelsep=3mm
+}
+\setlist[pregunta,3]{
+    label={\textrm{(\roman*)}}, 
+    leftmargin=*,
+    labelsep=3mm
+}
