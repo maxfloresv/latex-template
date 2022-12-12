@@ -1,0 +1,42 @@
+\newcommand*\ALLR{\Longleftrightarrow\quad}
+\newcommand*\ALR{\Longrightarrow\quad}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\newcommand{\ans}[1]{{\color{red!50!black} #1}}
+\newcommand{\asignar}[1]{$\mathbf{#1}$ \textbf{pts.}}
+\newcommand{\obs}[1]{\textit{(Obs.: #1)}}
+
+% Esto genera el título del documento. Formato 
+% #1 Describe al documento (título general)
+% #2 Nombre del ramo
+% #3 Número de sección
+% #4 Mail del aux
+\newcommand{\setup}[4]{%
+    \begin{minipage}[t]{0.7\linewidth}
+    \vspace{-1.5cm}
+        {\large\textbf{#1}}\par 
+        \textbf{#2. Sección #3.}\par
+        {Mail: \texttt{#4}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.2\linewidth}
+        \includegraphics[width=\linewidth,right]{img/fcfm.pdf}
+    \end{minipage}
+}
+
+\newcommand{\defp}[1]{[\textsc{#1}]}
+
+\newcommand{\resumen}[2]{\par
+    \textbullet \hspace{0.5mm} \defp{#1} #2
+\par}
+
+% Destacar expresiones matemáticas
+\newcommand{\hmath}[1]{\tcbhighmath[
+    left=.3pt, right=.3pt, top=.3pt, bottom=.3pt,
+    colframe=white, colback=blue!10!white
+]{#1}}
+\newcommand{\emath}[1]{\tcbhighmath[
+    left=.3pt, right=.3pt, top=.3pt, bottom=.3pt,
+    colframe=white, colback=red!20!white
+]{#1}}
